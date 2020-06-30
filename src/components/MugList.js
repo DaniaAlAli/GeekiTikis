@@ -7,12 +7,12 @@ import MugItem from "./MugItem";
 import mugs from "../mugs";
 
 //Style
-import styles from "../styles";
+import { ListWrapper } from "../styles";
 
 const MugsCollection = () => {
   const mugsCollection = mugs.map((mug) => <MugItem mug={mug} key={mug.id} />);
 
-  return <div style={styles.centering}>{mugsCollection}</div>;
+  return <ListWrapper>{mugsCollection}</ListWrapper>;
 };
 
 export default MugsCollection;

@@ -8,24 +8,41 @@ import logo from "./photos/logo.png";
 import CLC from "./photos/Colc.jpg";
 
 //Styles
-import styles from "./styles";
+import { ThemeProvider } from "styled-components";
+import {
+  Title,
+  Title2,
+  Logo,
+  Footer,
+  FooterImage,
+  GlobalStyle,
+} from "./styles";
+
+const theme = {
+  fontFamily: "Caesar Dressing, cursive",
+  fontSize: "xxx-large",
+  color: "grey",
+  background: "black",
+};
 
 function App() {
   return (
-    <div style={styles.back}>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle></GlobalStyle>
       <div>
-        <h1 style={styles.introText}> Explore and Show Your Geek Side</h1>
-        <h2 style={styles.introText}>on your mug!!</h2>
-        <img src={logo} alt="Geeki Tikis Shop" style={styles.image} />
+        <Title>Explore and Show Your Geek Side</Title>
+        <Title2>on your mug!!</Title2>
+        <Logo src={logo} alt="Geeki Tikis Shop" />
       </div>
 
       <MugList />
 
       <div>
-        <img src={CLC} alt="Collection Mugs" style={styles.collection} />
-        <p style={styles.text}>so many ways to rock your drink *CHEERS*!</p>
+        <FooterImage src={CLC} alt="Collection Mugs" />
+        <Footer>Grab yours & rock your drink</Footer>
+        <Footer>CHEERS!</Footer>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
