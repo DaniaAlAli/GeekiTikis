@@ -8,32 +8,34 @@ const ListWrapper = styled.div`
 
 const Title = styled.h1`
   text-align: center;
+  padding: 0.2em;
   font-family: "Hanalei", cursive;
   font-size: xxx-large;
-  color: #a02500;
-  background: #292929;
+  color: ${(props) => props.theme.colorh1};
+  background-color: ${(props) => props.theme.backgroundh1};
 `;
 
 const Title2 = styled.h2`
   text-align: center;
+  padding: 0.2em;
   font-family: "Hanalei", cursive;
   font-size: xxx-large;
-  color: #a02500;
-  background: #292929;
+  color: ${(props) => props.theme.colorh2};
+  background-color: ${(props) => props.theme.backgroundh2};
 `;
 
 const Logo = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 48%;
+  width: 55%;
 `;
 
 const Footer = styled.p`
   text-align: center;
   font-family: "Hanalei", cursive;
   font-size: xx-large;
-  color: green;
+  color: ${(props) => props.theme.colorF};
 `;
 
 const FooterImage = styled.img`
@@ -41,6 +43,7 @@ const FooterImage = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 46%;
+  border: ${(props) => props.theme.border};
 `;
 
 const MugWrapper = styled.div`
@@ -49,25 +52,30 @@ const MugWrapper = styled.div`
   img {
     width: 250px;
     height: 250px;
+    border: ${(props) => props.theme.border};
   }
 
   p {
     text-align: center;
 
     &.mug-type {
-      ${(props) => props.theme}
+      color: ${(props) => props.theme.colorT};
+      background-color: ${(props) => props.theme.backgroundT};
+      font-family: Caesar Dressing, cursive;
+      font-size: xxx-large;
     }
 
     &.mug-text {
+      color: ${(props) => props.theme.colorC};
       font-family: Caesar Dressing, cursive;
       font-size: xx-large;
     }
 
     &.mug-price {
-      color: blue;
+      color: ${(props) => props.theme.colorP};
       span {
         &.mug-barcode {
-          color: purple;
+          color: ${(props) => props.theme.colorB};
           font-family: "Libre Barcode 128 Text", cursive;
           font-size: xx-large;
         }
@@ -75,10 +83,23 @@ const MugWrapper = styled.div`
     }
   }
 `;
+
 const GlobalStyle = createGlobalStyle`
 body{
-background-color: white;
+background-color: ${(props) => props.theme.backgroundColor};
 }
+`;
+
+const ThemeButton = styled.button`
+  font-size: 1em;
+  margin: 0.9em;
+  padding: 0.3em 0.8em;
+  border-radius: 3px:
+  background-color: ${(props) => props.theme.colorButton};
+`;
+
+const DeleteButtonStyled = styled.p`
+  color: ${(props) => props.theme.colorD};
 `;
 
 export {
@@ -90,6 +111,8 @@ export {
   ListWrapper,
   MugWrapper,
   FooterImage,
+  ThemeButton,
+  DeleteButtonStyled,
 };
 
 // const styles = {

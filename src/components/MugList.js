@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Components
 import MugItem from "./MugItem";
@@ -10,7 +10,16 @@ import mugs from "../mugs";
 import { ListWrapper } from "../styles";
 
 const MugsCollection = () => {
-  const mugsCollection = mugs.map((mug) => <MugItem mug={mug} key={mug.id} />);
+  const [mugsD, setMugs] = useState(mugs);
+
+  const deleteCollection = (mugID) => {
+    const updateMugs = mugsD.filter((mugs) => mugs.id !== mugID);
+    setMugs(updateMugs);
+  };
+
+  const mugsCollection = mugsD.map((mugs) => (
+    <MugItem mugs={mugs} deleteCollection={deleteCollection} key={mugs.id} />
+  ));
 
   return <ListWrapper>{mugsCollection}</ListWrapper>;
 };
