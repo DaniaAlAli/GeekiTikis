@@ -4,20 +4,25 @@ import React from "react";
 import { MugWrapper, DeleteButtonStyled } from "../styles";
 
 const MugItem = (props) => {
-  const mugs = props.mugs;
+  const mug = props.mug;
+
   const handleDelete = () => {
     props.deleteCollection(props.mugs.id);
   };
 
   return (
     <MugWrapper>
-      <img alt={mugs.name} src={mugs.image} />
-      <p className="mug-type">{mugs.name}</p>
-      <p className="mug-text">{mugs.fix}</p>
+      <img
+        alt={mug.name}
+        src={mug.image}
+        onClick={() => props.selectMug(mug.id)}
+      />
+      <p className="mug-type">{mug.name}</p>
+      <p className="mug-text">{mug.fix}</p>
 
       <p className="mug-price">
-        {mugs.price} KD{" - "}
-        <span className="mug-barcode"> {mugs.barcode}</span>
+        {mug.price} KD{" - "}
+        <span className="mug-barcode"> {mug.barcode}</span>
       </p>
       <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
     </MugWrapper>

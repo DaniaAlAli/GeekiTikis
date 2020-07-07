@@ -1,34 +1,37 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const ListWrapper = styled.div`
+//Alphabetically Order
+
+const DeleteButtonStyled = styled.p`
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+  color: ${(props) => props.theme.colorD};
+  :hover {
+    cursor: pointer;
+    border: 1px solid red;
+    background-color: ${(props) => props.theme.colorDB};
+    border-radius: 20px;
+  }
+`;
+
+const BackButton = styled.button`
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
   align-item: center;
   justify-content: center;
   display: flex;
 `;
 
-const Title = styled.h1`
-  text-align: center;
-  padding: 0.2em;
-  font-family: "Hanalei", cursive;
-  font-size: xxx-large;
-  color: ${(props) => props.theme.colorh1};
-  background-color: ${(props) => props.theme.backgroundh1};
-`;
-
-const Title2 = styled.h2`
-  text-align: center;
-  padding: 0.2em;
-  font-family: "Hanalei", cursive;
-  font-size: xxx-large;
-  color: ${(props) => props.theme.colorh2};
-  background-color: ${(props) => props.theme.backgroundh2};
-`;
-
-const Logo = styled.img`
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 55%;
+const DetailWrapper = styled.div`
+display: block;
+margin-left: auto;
+margin-right: auto;
+width 80;
 `;
 
 const Footer = styled.p`
@@ -44,6 +47,26 @@ const FooterImage = styled.img`
   margin-right: auto;
   width: 46%;
   border: ${(props) => props.theme.border};
+  border-radius: 25px;
+`;
+
+const GlobalStyle = createGlobalStyle`
+body{
+background-color: ${(props) => props.theme.backgroundColor};
+}
+`;
+
+const ListWrapper = styled.div`
+  align-item: center;
+  justify-content: center;
+  display: flex;
+`;
+
+const Logo = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 54%;
 `;
 
 const MugWrapper = styled.div`
@@ -53,6 +76,7 @@ const MugWrapper = styled.div`
     width: 250px;
     height: 250px;
     border: ${(props) => props.theme.border};
+    border-radius: 30px;
   }
 
   p {
@@ -63,11 +87,25 @@ const MugWrapper = styled.div`
       background-color: ${(props) => props.theme.backgroundT};
       font-family: Caesar Dressing, cursive;
       font-size: xxx-large;
+      border: ${(props) => props.theme.border};
+      border-radius: 20px;
     }
 
     &.mug-text {
       color: ${(props) => props.theme.colorC};
       font-family: Caesar Dressing, cursive;
+      font-size: xx-large;
+    }
+
+    &.mug-descrip {
+      color: ${(props) => props.theme.colorC};
+      font-family: "Special Elite", cursive;
+      font-size: large;
+    }
+
+    &.mug-barcode {
+      color: ${(props) => props.theme.colorB};
+      font-family: "Libre Barcode 128 Text", cursive;
       font-size: xx-large;
     }
 
@@ -84,108 +122,46 @@ const MugWrapper = styled.div`
   }
 `;
 
-const GlobalStyle = createGlobalStyle`
-body{
-background-color: ${(props) => props.theme.backgroundColor};
-}
-`;
-
 const ThemeButton = styled.button`
-  font-size: 1em;
-  margin: 0.9em;
-  padding: 0.3em 0.8em;
-  border-radius: 3px:
-  background-color: ${(props) => props.theme.colorButton};
+  font-size: 15px;
+  margin: 1.5em;
+  padding: 0.3em 1em;
+  border: 3px:
+  background: black;
+  color: black;
 `;
 
-const DeleteButtonStyled = styled.p`
-  color: ${(props) => props.theme.colorD};
+const TitleWrap = styled.div`
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 60px;
+  text-align: center;
+  color: ${(props) => props.theme.colorh};
+  background-color: ${(props) => props.theme.backgroundh};
+  border: ${(props) => props.theme.borderh};
+  border-radius: 40px;
+`;
+
+const Title = styled.h1`
+  text-align: center;
+  padding: 0.1px;
+  font-family: "Hanalei", cursive;
+  font-size: 55px;
 `;
 
 export {
-  Title,
-  Title2,
-  GlobalStyle,
-  Logo,
-  Footer,
-  ListWrapper,
-  MugWrapper,
-  FooterImage,
-  ThemeButton,
   DeleteButtonStyled,
+  DetailWrapper,
+  Footer,
+  FooterImage,
+  GlobalStyle,
+  ListWrapper,
+  Logo,
+  MugWrapper,
+  ThemeButton,
+  Title,
+  TitleWrap,
+  BackButton,
 };
-
-// const styles = {
-// introText: {
-//   textAlign: "center",
-//   fontFamily: "'Hanalei', cursive",
-//   fontSize: "xxx-large",
-//   color: "#a02500",
-//   background: "#292929",
-// },
-
-// image: {
-//   display: "block",
-//   marginLeft: "auto",
-//   marginRight: "auto",
-//   width: "48%",
-// },
-
-// type: {
-//   textAlign: "center",
-//   fontFamily: "Caesar Dressing, cursive",
-//   fontSize: "xxx-large",
-//   color: "grey",
-//   background: "black",
-// },
-
-// text: {
-//   textAlign: "center",
-//   fontFamily: "Caesar Dressing, cursive",
-//   fontSize: "xx-large",
-// },
-
-// barcode: {
-//   color: "purple",
-//   textAlign: "center",
-//   fontFamily: "'Libre Barcode 128 Text', cursive",
-//   fontSize: "xx-large",
-// },
-
-// price: {
-//   color: "red",
-//   textAlign: "center",
-// },
-
-// centering: {
-//   alignItem: "center",
-//   justifyContent: "center",
-//   display: "flex",
-// },
-
-// dc: {
-//   margin: "20px",
-// },
-
-// dcimage: {
-//   width: "250px",
-//   hieght: "250px",
-// },
-
-// collection: {
-//   display: "block",
-//   marginLeft: "auto",
-//   //   // marginDown: "900px",
-//   //   marginRight: "auto",
-//   //   width: "46%",
-//   // },
-
-//   footer: {
-//     textAlign: "center",
-//     fontFamily: "'Hanalei', cursive",
-//     fontSize: "xx-large",
-//     color: "green",
-//   },
-// };
-
-// export default styles;
