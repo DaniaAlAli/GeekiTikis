@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Link, NavLink } from "react-router-dom";
 
 //Alphabetically Order
 
@@ -60,6 +61,7 @@ const ListWrapper = styled.div`
   align-item: center;
   justify-content: center;
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const Logo = styled.img`
@@ -67,6 +69,13 @@ const Logo = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 54%;
+`;
+
+const LogoLink = styled(Link)`
+  padding: 0.05em;
+  img {
+    width: 120px;
+  }
 `;
 
 const MugWrapper = styled.div`
@@ -122,9 +131,29 @@ const MugWrapper = styled.div`
   }
 `;
 
+export const NavItem = styled(NavLink)`
+  padding: 0.25em 1em;
+  color: black;
+
+  &.active {
+    color: ${(props) => props.theme.colorF};
+  }
+`;
+
+export const NavStyled = styled.nav`
+  border: 1px solid ${(props) => props.theme.backgroundh};
+  border-radius: 5px;
+`;
+
+const SearchBarStyled = styled.input`
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 40%;
+`;
+
 const ThemeButton = styled.button`
   font-size: 15px;
-  margin: 1.5em;
   padding: 0.3em 1em;
   border: 3px:
   background: black;
@@ -164,4 +193,6 @@ export {
   Title,
   TitleWrap,
   BackButton,
+  SearchBarStyled,
+  LogoLink,
 };

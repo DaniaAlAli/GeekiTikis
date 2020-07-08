@@ -1,22 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //Style
-import { MugWrapper, DeleteButtonStyled } from "../styles";
+import { MugWrapper } from "../styles";
 
-const MugItem = (props) => {
-  const mug = props.mug;
+//Component
+import DeleteButton from "./Buttons/DeleteButton";
 
-  const handleDelete = () => {
-    props.deleteCollection(props.mugs.id);
-  };
-
+const MugItem = ({ mug, deleteCollection }) => {
   return (
     <MugWrapper>
-      <img
-        alt={mug.name}
-        src={mug.image}
-        onClick={() => props.selectMug(mug.id)}
-      />
+      <Link to={`/mugs/${mug.slug}`}>
+        <img alt={mug.name} src={mug.image} />
+      </Link>
       <p className="mug-type">{mug.name}</p>
       <p className="mug-text">{mug.fix}</p>
 
@@ -24,7 +20,7 @@ const MugItem = (props) => {
         {mug.price} KD{" - "}
         <span className="mug-barcode"> {mug.barcode}</span>
       </p>
-      <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
+      <DeleteButton mugId={mug.id} deleteCollection={deleteCollection} />
     </MugWrapper>
   );
 };

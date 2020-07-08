@@ -1,39 +1,36 @@
 import React from "react";
+import { Link, useParams, Redirect } from "react-router-dom";
+
+//Component
+import DeleteButton from "./Buttons/DeleteButton";
 
 //Style
-import {
-  DetailWrapper,
-  DeleteButtonStyled,
-  BackButton,
-  MugWrapper,
-  ListWrapper,
-} from "../styles";
+import { DetailWrapper, BackButton, MugWrapper, ListWrapper } from "../styles";
 
-const MugDetail = (props) => {
-  const mug = props.mug;
+const MugDetail = ({ mug, deleteCollection }) => {
+  const { mugSlug } = useParams();
 
-  const handleDelete = () => {
-    props.deleteCollection(mug.id);
-  };
+  const mugs = mug.find((mug) => mug.slug === mugSlug);
 
-  const handleList = () => {
-    props.backToList();
-  };
-
+  if (!mugs) return <Redirect to="/mugs" />;
   return (
-    <MugWrapper>
+    <MugWrapper className="col-lg-5">
       <ListWrapper>
         <DetailWrapper>
-          <img alt={mug.name} src={mug.image} />
-          <p className="mug-type">{mug.name}</p>
-          <p className="mug-text">{mug.fix}</p>
-          <p className="mug-descrip">{mug.description}</p>
-          <p className="mug-descrip">{mug.types}</p>
-          <p className="mug-descrip">{mug.descriptionP}</p>
-          <p className="mug-barcode">{mug.barcode}</p>
+          <img alt={mug.name} src={mugs.image} />
+          <p className="mug-type">{mugs.name}</p>
+          <p className="mug-text">{mugs.fix}</p>
+          <p className="mug-descrip">{mugs.description}</p>
+          <p className="mug-descrip">{mugs.types}</p>
+          <p className="mug-descrip">{mugs.descriptionP}</p>
+          <p className="mug-barcode">{mugs.barcode}</p>
 
-          <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
-          <BackButton onClick={handleList}> Back to List</BackButton>
+          <DeleteButton mugId={mug.id} deleteCollection={deleteCollection}>
+            Delete
+          </DeleteButton>
+          <Link to="/mugs">
+            <BackButton> Back to Mugs</BackButton>
+          </Link>
         </DetailWrapper>
       </ListWrapper>
     </MugWrapper>

@@ -2,6 +2,7 @@ const mugs = [
   {
     id: 1,
     name: "DC",
+    slug: "DC",
     fix: "Collection Mugs",
     price: 8.5,
     description: " Set of three DC Mugs: ",
@@ -14,6 +15,7 @@ const mugs = [
   {
     id: 2,
     name: "Marvel",
+    slug: "Marvel",
     fix: "Collection Mugs",
     price: 8.5,
     description: " Set of three Marvel Mugs: ",
@@ -25,7 +27,8 @@ const mugs = [
   },
   {
     id: 3,
-    name: "StarWars",
+    name: "Star Wars",
+    slug: "Star-Wars",
     fix: "Collection Mugs",
     price: 9,
     barcode: " SW140662",

@@ -1,26 +1,18 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router";
 
 //Components
 import MugList from "./components/MugList";
 import MugDetail from "./components/MugDetail";
-//Photos
-import logo from "./photos/logo2.png";
-import CLC from "./photos/Colc.jpg";
+import Home from "./components/Home";
+import NavBar from "./components/NavBar";
 
 //Data
 import mugs from "./mugs";
 
 //Styles
 import { ThemeProvider } from "styled-components";
-import {
-  Footer,
-  FooterImage,
-  GlobalStyle,
-  Logo,
-  ThemeButton,
-  Title,
-  TitleWrap,
-} from "./styles";
+import { GlobalStyle } from "./styles";
 
 const lightTheme = {
   Dark: {
@@ -80,38 +72,12 @@ const lightTheme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("Light");
-  const [mug, umMug] = useState(null);
   const [mugsD, setMugs] = useState(mugs);
 
   const deleteCollection = (mugID) => {
     const updateMugs = mugsD.filter((mugs) => mugs.id !== mugID);
     setMugs(updateMugs);
-    umMug(null);
   };
-
-  const backToList = () => {
-    umMug(null);
-  };
-
-  const selectMug = (mugId) => {
-    const SelectedMug = mugs.find((mug) => mug.id === mugId);
-    umMug(SelectedMug);
-  };
-
-  const setView = () =>
-    mug ? (
-      <MugDetail
-        mug={mug}
-        backToList={backToList}
-        deleteCollection={deleteCollection}
-      />
-    ) : (
-      <MugList
-        mug={mugsD}
-        deleteCollection={deleteCollection}
-        selectMug={selectMug}
-      />
-    );
 
   const toggleTheme = () => {
     if (currentTheme === "Warm") setCurrentTheme("Light");
@@ -122,24 +88,19 @@ function App() {
   return (
     <ThemeProvider theme={lightTheme[currentTheme]}>
       <GlobalStyle />
-      <ThemeButton onClick={toggleTheme}>
-        {currentTheme === "Warm"
-          ? "Light"
-          : currentTheme === "Light"
-          ? "Dark"
-          : "Warm"}{" "}
-        Mode
-      </ThemeButton>
-      <TitleWrap>
-        <Title>Explore and Show Your Geek Side</Title>
-        <Title>on your mug!!</Title>
-      </TitleWrap>
-      <Logo src={logo} alt="Geeki Tikis Shop" />
+      <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
 
-      {setView()}
-      <FooterImage src={CLC} alt="Collection Mugs" />
-      <Footer>Grab yours & rock your drink</Footer>
-      <Footer>CHEERS!</Footer>
+      <Switch>
+        <Route path="/mugs/:mugSlug">
+          <MugDetail mug={mugsD} deleteCollection={deleteCollection} />
+        </Route>
+        <Route path="/mugs">
+          <MugList mug={mugsD} deleteCollection={deleteCollection} />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }
