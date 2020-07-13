@@ -3,10 +3,11 @@ import React from "react";
 //Style
 import { DeleteButtonStyled } from "../../styles";
 
-const DeleteButton = (props) => {
-  const handleDelete = () => {
-    props.deleteCollection(props.mugId);
-  };
+//Store
+import mugStore from "../stores/MugStore";
+
+const DeleteButton = ({ mugId }) => {
+  const handleDelete = () => mugStore.deleteCollction.mugId;
 
   return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;
 };

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-
+import slugify from "react-slugify";
 //Components
 import MugList from "./components/MugList";
 import MugDetail from "./components/MugDetail";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
+// import MugModal from "./components/modals/MugModal"
 
 //Data
 import mugs from "./mugs";
@@ -74,6 +75,13 @@ function App() {
   const [currentTheme, setCurrentTheme] = useState("Light");
   const [mugsD, setMugs] = useState(mugs);
 
+  const createMug = (newMug) => {
+    newMug.id = mugsD[mugsD.length - 1].id + 1;
+    newMug.slug = slugify(newMug.name);
+    const updatedMugs = [...mugsD, newMug];
+    setMugs(updatedMugs);
+  };
+
   const deleteCollection = (mugID) => {
     const updateMugs = mugsD.filter((mugs) => mugs.id !== mugID);
     setMugs(updateMugs);
@@ -95,7 +103,11 @@ function App() {
           <MugDetail mug={mugsD} deleteCollection={deleteCollection} />
         </Route>
         <Route path="/mugs">
-          <MugList mug={mugsD} deleteCollection={deleteCollection} />
+          <MugList
+            mug={mugsD}
+            deleteCollection={deleteCollection}
+            createMug={createMug}
+          />
         </Route>
         <Route path="/">
           <Home />

@@ -28,6 +28,15 @@ const BackButton = styled.button`
   display: flex;
 `;
 
+export const CreateButtonStyled = styled.button`
+  color: ${(props) => props.theme.colorh};
+  background-color: ${(props) => props.theme.backgroundh};
+  &:hover {
+    color: ${(props) => props.theme.backgroundh};
+    background-color: ${(props) => props.theme.colorh};
+  }
+`;
+
 const DetailWrapper = styled.div`
 display: block;
 margin-left: auto;
@@ -54,6 +63,7 @@ const FooterImage = styled.img`
 const GlobalStyle = createGlobalStyle`
 body{
 background-color: ${(props) => props.theme.backgroundColor};
+
 }
 `;
 
@@ -86,6 +96,7 @@ const MugWrapper = styled.div`
     height: 250px;
     border: ${(props) => props.theme.border};
     border-radius: 30px;
+    margin-bottom: 10px;
   }
 
   p {

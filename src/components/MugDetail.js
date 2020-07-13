@@ -5,7 +5,7 @@ import { Link, useParams, Redirect } from "react-router-dom";
 import DeleteButton from "./Buttons/DeleteButton";
 
 //Style
-import { DetailWrapper, BackButton, MugWrapper, ListWrapper } from "../styles";
+import { DetailWrapper, MugWrapper, ListWrapper } from "../styles";
 
 const MugDetail = ({ mug, deleteCollection }) => {
   const { mugSlug } = useParams();
@@ -14,23 +14,22 @@ const MugDetail = ({ mug, deleteCollection }) => {
 
   if (!mugs) return <Redirect to="/mugs" />;
   return (
-    <MugWrapper className="col-lg-5">
+    <MugWrapper>
       <ListWrapper>
         <DetailWrapper>
-          <img alt={mug.name} src={mugs.image} />
-          <p className="mug-type">{mugs.name}</p>
+          <ListWrapper>
+            <img alt={mug.name} src={mugs.image} />
+          </ListWrapper>
+          <ListWrapper>
+            <p className="mug-type">{mugs.name}</p>
+          </ListWrapper>
           <p className="mug-text">{mugs.fix}</p>
-          <p className="mug-descrip">{mugs.description}</p>
-          <p className="mug-descrip">{mugs.types}</p>
-          <p className="mug-descrip">{mugs.descriptionP}</p>
+          <ListWrapper>
+            <p className="mug-descrip">{mugs.description}</p>
+          </ListWrapper>
           <p className="mug-barcode">{mugs.barcode}</p>
 
-          <DeleteButton mugId={mug.id} deleteCollection={deleteCollection}>
-            Delete
-          </DeleteButton>
-          <Link to="/mugs">
-            <BackButton> Back to Mugs</BackButton>
-          </Link>
+          <DeleteButton mugId={mug.id} deleteCollection={deleteCollection} />
         </DetailWrapper>
       </ListWrapper>
     </MugWrapper>

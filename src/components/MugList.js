@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import { Rout } from "react-router-dom";
+import { observer } from "mobx-react";
 
 //Components
 import MugItem from "./MugItem";
-import SearchBar from "./SearchBar";
-
+import AddButton from "./Buttons/AddButton";
 //Style
 import { ListWrapper } from "../styles";
+import SearchBar from "./SearchBar";
 
-const MugsCollection = ({ mug, deleteCollection }) => {
+//Store
+import mugStore from "../stores/MugStore";
+
+const MugsCollection = ({ mug, deleteCollection, createMug }) => {
   const [query, setQuery] = useState("");
 
-  const mugsCollection = mug
+  const mugsCollection = mugStore.mugs
     .filter((mug) => mug.name.toLowerCase().includes(query.toLowerCase()))
     .map((mug) => (
       <MugItem mug={mug} deleteCollection={deleteCollection} key={mug.id} />
@@ -21,8 +24,9 @@ const MugsCollection = ({ mug, deleteCollection }) => {
     <div class="container">
       <SearchBar setQuery={setQuery} />
       <ListWrapper className="row">{mugsCollection}</ListWrapper>
+      <AddButton createMug={createMug} />
     </div>
   );
 };
 
-export default MugsCollection;
+export default observer(MugsCollection);
