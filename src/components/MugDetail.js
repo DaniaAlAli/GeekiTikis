@@ -1,8 +1,10 @@
 import React from "react";
 import { useParams, Redirect } from "react-router-dom";
 import { observer } from "mobx-react";
+
 //Component
 import DeleteButton from "./Buttons/DeleteButton";
+import UpdateButton from "./Buttons/UpdateButton";
 
 //Style
 import { DetailWrapper, MugWrapper, ListWrapper } from "../styles";
@@ -31,7 +33,7 @@ const MugDetail = () => {
             <p className="mug-descrip">{mugs.description}</p>
           </ListWrapper>
           <p className="mug-barcode">{mugs.barcode}</p>
-
+          <UpdateButton mug={mugs} />
           <DeleteButton mugId={mugs.id} />
         </DetailWrapper>
       </ListWrapper>

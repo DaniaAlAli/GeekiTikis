@@ -16,11 +16,6 @@ class MugStore {
   updateMug = (updateMug) => {
     const mug = this.mugs.find((mug) => mug.id === updateMug.id);
 
-    // mugs.name = updateMug.name;
-    // mugs.price = updateMug.price;
-    // mugs.description = updateMug.description;
-    // mugs.image = updateMug.image;
-
     for (const key in updateMug) mug[key] = updateMug[key];
   };
 
