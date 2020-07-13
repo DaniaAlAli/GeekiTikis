@@ -37,6 +37,20 @@ export const CreateButtonStyled = styled.button`
   }
 `;
 
+export const UpdateButtonStyled = styled.p`
+width: 40%;
+margin-left: auto;
+margin-right: auto;
+
+text-align: center;
+color: ${(props) => props.theme.colorD};
+:hover {
+  cursor: pointer;
+  border: 1px solid red;
+  background-color: ${(props) => props.theme.colorDB};
+  border-radius: 20px;
+`;
+
 const DetailWrapper = styled.div`
 display: block;
 margin-left: auto;

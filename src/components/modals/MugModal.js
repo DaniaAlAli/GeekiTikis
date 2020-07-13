@@ -18,24 +18,28 @@ const customStyles = {
   },
 };
 
-const MugModal = ({ isOpen, closeModal }) => {
-  const [mug, setMug] = useState({
-    name: "",
-    price: 0,
-    description: "",
-    image: "",
-  });
+const MugModal = ({ isOpen, closeModal, oldMug }) => {
+  const [mug, setMug] = useState(
+    oldMug ?? {
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    }
+  );
 
   const handleChange = (event) => {
-    console.log("handleChange -> event", event.target.name);
-    console.log("handleChange -> event", event.target.value);
     const newMug = { ...mug, [event.target.name]: event.target.value };
     setMug(newMug);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    mugStore.createMug(mug);
+
+    //oldMug ? mugStore.updateMug(mug) : mugStore.createMug(mug);
+
+    mugStore[oldMug ? "updateMug" : "createMug"](mug);
+
     closeModal();
   };
 
@@ -56,16 +60,18 @@ const MugModal = ({ isOpen, closeModal }) => {
               type="text"
               onChange={handleChange}
               className="form-control"
+              value={mug.name}
             />
           </div>
           <div className="col-4">
             <label>Price</label>
             <input
               name="price"
-              type="number"
+              type="float"
               onChange={handleChange}
               min="1"
               className="form-control"
+              value={mug.price}
             />
           </div>
           <div className="col-4">
@@ -75,6 +81,7 @@ const MugModal = ({ isOpen, closeModal }) => {
               type="text"
               onChange={handleChange}
               className="form-control"
+              value={mug.barcode}
             />
           </div>
         </div>
@@ -85,6 +92,7 @@ const MugModal = ({ isOpen, closeModal }) => {
             type="text"
             onChange={handleChange}
             className="form-control"
+            value={mug.description}
           />
         </div>
         <div className="form-group">
@@ -93,10 +101,11 @@ const MugModal = ({ isOpen, closeModal }) => {
             name="image"
             onChange={handleChange}
             className="form-control"
+            value={mug.image}
           />
         </div>
         <CreateButtonStyled className=" btn float-right">
-          Create
+          {oldMug ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>
