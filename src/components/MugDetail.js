@@ -25,14 +25,13 @@ const MugDetail = () => {
           <ListWrapper>
             <img alt={mugs.name} src={mugs.image} />
           </ListWrapper>
-          <ListWrapper>
-            <p className="mug-type">{mugs.name}</p>
-          </ListWrapper>
+          <p className="mug-type">{mugs.name}</p>
           <p className="mug-text">{mugs.fix}</p>
-          <ListWrapper>
-            <p className="mug-descrip">{mugs.description}</p>
-          </ListWrapper>
-          <p className="mug-barcode">{mugs.barcode}</p>
+          <p className="mug-descrip">{mugs.description}</p>
+          <p className="mug-price">
+            {mugs.price} KD{" - "}
+            <span className="mug-barcode"> {mugs.barcode}</span>
+          </p>
           <UpdateButton mug={mugs} />
           <DeleteButton mugId={mugs.id} />
         </DetailWrapper>

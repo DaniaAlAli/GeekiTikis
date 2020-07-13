@@ -85,15 +85,27 @@ const MugModal = ({ isOpen, closeModal, oldMug }) => {
             />
           </div>
         </div>
-        <div className="form-group">
-          <label>Description</label>
-          <input
-            name="description"
-            type="text"
-            onChange={handleChange}
-            className="form-control"
-            value={mug.description}
-          />
+        <div className="form-group row">
+          <div className="col-4">
+            <label>Type</label>
+            <input
+              name="barcode"
+              type="type"
+              onChange={handleChange}
+              className="form-control"
+              value={mug.type}
+            />
+          </div>
+          <div className="col-8">
+            <label>Description</label>
+            <input
+              name="description"
+              type="text"
+              onChange={handleChange}
+              className="form-control"
+              value={mug.description}
+            />
+          </div>
         </div>
         <div className="form-group">
           <label color="red">Image</label>

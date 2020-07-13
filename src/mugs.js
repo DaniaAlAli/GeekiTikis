@@ -3,10 +3,10 @@ const mugs = [
     id: 1,
     name: "DC",
     slug: "DC",
-    fix: "Collection Mugs",
+    type: "Collection Mugs",
     price: 8.5,
     description:
-      " Set of three DC Mugs: 1.BatmMan 2.WonderWoman 3.SuperMan (8.5 KD per unit) ",
+      " Set of three DC Mugs: 1.BatmMan 2.WonderWoman 3.SuperMan (price per unit) ",
     barcode: " DC61193",
     image:
       "https://i.pinimg.com/736x/3f/e0/72/3fe072994b9d746e3d76eb4f82da5f93.jpg",
@@ -15,10 +15,10 @@ const mugs = [
     id: 2,
     name: "Marvel",
     slug: "Marvel",
-    fix: "Collection Mugs",
+    type: "Collection Mugs",
     price: 8.5,
     description:
-      " Set of three Marvel Mugs: 1.Peter Quill 2.Groot 3.Gamora (8.5 KD per unit) ",
+      " Set of three Marvel Mugs: 1.Peter Quill 2.Groot 3.Gamora (price per unit) ",
     barcode: " MV290118 ",
     image:
       "https://insidethemagic-119e2.kxcdn.com/wp-content/uploads/2017/05/jrpk_gotg_geeki_tikis.jpg",
@@ -27,11 +27,11 @@ const mugs = [
     id: 3,
     name: "Star Wars",
     slug: "Star-Wars",
-    fix: "Collection Mugs",
+    type: "Collection Mugs",
     price: 9,
     barcode: " SW140662",
     description:
-      "Set of three Star Wars Mugs: 1.Darth Vader 2.Master Yoda 3.Chewbacca (9 KD per unit) ",
+      "Set of three Star Wars Mugs: 1.Darth Vader 2.Master Yoda 3.Chewbacca (price per unit) ",
     image: "https://www.geekalerts.com/u/Star-Wars-Geeki-Tikis.jpg",
   },
   // {

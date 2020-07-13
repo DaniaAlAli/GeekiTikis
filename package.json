@@ -12,6 +12,7 @@
     "mobx-react": "^6.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-dropdown": "^1.7.0",
     "react-icons": "^3.10.0",
     "react-mobx": "^0.0.4",
     "react-modal": "^3.11.2",
