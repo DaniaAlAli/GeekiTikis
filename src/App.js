@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-import slugify from "react-slugify";
+
 //Components
 import MugList from "./components/MugList";
 import MugDetail from "./components/MugDetail";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar";
 // import MugModal from "./components/modals/MugModal"
-
-//Data
-import mugs from "./mugs";
 
 //Styles
 import { ThemeProvider } from "styled-components";
@@ -28,7 +25,7 @@ const lightTheme = {
     colorB: "red",
     colorD: "red",
     colorF: "white",
-    colorButton: "#e1d7ae",
+    // colorButton: "#e1d7ae",
     border: "3px solid #a02500",
     borderh: "3px solid #a02500",
     colorDB: "white",
@@ -46,7 +43,7 @@ const lightTheme = {
     colorB: "purple",
     colorD: "red",
     colorF: "green",
-    colorButton: "#292929",
+    // colorButton: "#292929",
     border: "3px solid black",
     borderh: "3px solid black",
     colorDB: "black",
@@ -64,7 +61,7 @@ const lightTheme = {
     colorB: "orange",
     colorD: "red",
     colorF: "#805342",
-    colorButton: "#e1d7ae",
+    // colorButton: "#e1d7ae",
     border: "3px solid #805342",
     borderh: "3px solid #d19985",
     colorDB: "#805342",
@@ -73,19 +70,6 @@ const lightTheme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("Light");
-  const [mugsD, setMugs] = useState(mugs);
-
-  const createMug = (newMug) => {
-    newMug.id = mugsD[mugsD.length - 1].id + 1;
-    newMug.slug = slugify(newMug.name);
-    const updatedMugs = [...mugsD, newMug];
-    setMugs(updatedMugs);
-  };
-
-  const deleteCollection = (mugID) => {
-    const updateMugs = mugsD.filter((mugs) => mugs.id !== mugID);
-    setMugs(updateMugs);
-  };
 
   const toggleTheme = () => {
     if (currentTheme === "Warm") setCurrentTheme("Light");
@@ -100,14 +84,10 @@ function App() {
 
       <Switch>
         <Route path="/mugs/:mugSlug">
-          <MugDetail mug={mugsD} deleteCollection={deleteCollection} />
+          <MugDetail />
         </Route>
         <Route path="/mugs">
-          <MugList
-            mug={mugsD}
-            deleteCollection={deleteCollection}
-            createMug={createMug}
-          />
+          <MugList />
         </Route>
         <Route path="/">
           <Home />

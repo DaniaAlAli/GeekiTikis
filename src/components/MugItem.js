@@ -1,5 +1,4 @@
 import React from "react";
-import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
 
 //Style
@@ -8,7 +7,7 @@ import { MugWrapper } from "../styles";
 //Component
 import DeleteButton from "./Buttons/DeleteButton";
 
-const MugItem = ({ mug, deleteCollection }) => {
+const MugItem = ({ mug }) => {
   return (
     <MugWrapper>
       <Link to={`/mugs/${mug.slug}`}>
@@ -21,8 +20,8 @@ const MugItem = ({ mug, deleteCollection }) => {
         {mug.price} KD{" - "}
         <span className="mug-barcode"> {mug.barcode}</span>
       </p>
-      <DeleteButton mugId={mug.id} deleteCollection={deleteCollection} />
+      <DeleteButton mugId={mug.id} />
     </MugWrapper>
   );
 };
-export default observer(MugItem);
+export default MugItem;

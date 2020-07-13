@@ -1,16 +1,19 @@
 import React from "react";
-import { Link, useParams, Redirect } from "react-router-dom";
-
+import { useParams, Redirect } from "react-router-dom";
+import { observer } from "mobx-react";
 //Component
 import DeleteButton from "./Buttons/DeleteButton";
 
 //Style
 import { DetailWrapper, MugWrapper, ListWrapper } from "../styles";
 
-const MugDetail = ({ mug, deleteCollection }) => {
+//Store
+import mugStore from "../stores/MugStore";
+
+const MugDetail = () => {
   const { mugSlug } = useParams();
 
-  const mugs = mug.find((mug) => mug.slug === mugSlug);
+  const mugs = mugStore.mugs.find((mug) => mug.slug === mugSlug);
 
   if (!mugs) return <Redirect to="/mugs" />;
   return (
@@ -18,7 +21,7 @@ const MugDetail = ({ mug, deleteCollection }) => {
       <ListWrapper>
         <DetailWrapper>
           <ListWrapper>
-            <img alt={mug.name} src={mugs.image} />
+            <img alt={mugs.name} src={mugs.image} />
           </ListWrapper>
           <ListWrapper>
             <p className="mug-type">{mugs.name}</p>
@@ -29,11 +32,11 @@ const MugDetail = ({ mug, deleteCollection }) => {
           </ListWrapper>
           <p className="mug-barcode">{mugs.barcode}</p>
 
-          <DeleteButton mugId={mug.id} deleteCollection={deleteCollection} />
+          <DeleteButton mugId={mugs.id} />
         </DetailWrapper>
       </ListWrapper>
     </MugWrapper>
   );
 };
 
-export default MugDetail;
+export default observer(MugDetail);

@@ -74,6 +74,13 @@ const ListWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
+export const DetailName = styled.div`
+  align-item: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+`;
+
 const Logo = styled.img`
   display: block;
   margin-left: auto;

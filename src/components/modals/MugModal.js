@@ -4,6 +4,9 @@ import Modal from "react-modal";
 //Style
 import { CreateButtonStyled } from "../../styles";
 
+//Store
+import mugStore from "../../stores/MugStore";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -15,7 +18,7 @@ const customStyles = {
   },
 };
 
-const MugModal = ({ isOpen, closeModal, createMug }) => {
+const MugModal = ({ isOpen, closeModal }) => {
   const [mug, setMug] = useState({
     name: "",
     price: 0,
@@ -32,7 +35,7 @@ const MugModal = ({ isOpen, closeModal, createMug }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createMug(mug);
+    mugStore.createMug(mug);
     closeModal();
   };
 

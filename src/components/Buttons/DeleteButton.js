@@ -4,10 +4,10 @@ import React from "react";
 import { DeleteButtonStyled } from "../../styles";
 
 //Store
-import mugStore from "../stores/MugStore";
+import mugStore from "../../stores/MugStore";
 
 const DeleteButton = ({ mugId }) => {
-  const handleDelete = () => mugStore.deleteCollction.mugId;
+  const handleDelete = () => mugStore.deleteCollection(mugId);
 
   return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;
 };

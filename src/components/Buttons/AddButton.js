@@ -6,8 +6,8 @@ import MugModal from "../modals/MugModal";
 //Style
 import { FaPlusSquare } from "react-icons/fa";
 
-const AddButton = ({ createMug }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+const AddButton = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
 
@@ -19,7 +19,7 @@ const AddButton = ({ createMug }) => {
         color="red"
         onClick={openModal}
       />{" "}
-      <MugModal isOpen={isOpen} closeModal={closeModal} createMug={createMug} />
+      <MugModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 };
