@@ -1,5 +1,4 @@
 import { decorate, observable } from "mobx";
-import slugify from "react-slugify";
 import axios from "axios";
 
 class MugStore {
@@ -14,10 +13,13 @@ class MugStore {
     }
   };
 
-  createMug = (newMug) => {
-    newMug.id = this.mugs[this.mugs.length - 1].id + 1;
-    newMug.slug = slugify(newMug.name);
-    this.mugs.push(newMug);
+  createMug = async (newMug) => {
+    try {
+      const res = await axios.post("http://localhost:8000/mugs", newMug);
+      this.mugs.push(res.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   updateMug = (updateMug) => {
