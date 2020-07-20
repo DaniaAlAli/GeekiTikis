@@ -1,11 +1,18 @@
 import { decorate, observable } from "mobx";
 import slugify from "react-slugify";
-
-//Data
-import mugs from "../mugs";
+import axios from "axios";
 
 class MugStore {
-  mugs = mugs;
+  mugs = [];
+
+  fetchMugs = async () => {
+    try {
+      const res = await axios.get("http://localhost:8000/mugs");
+      this.mugs = res.data;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   createMug = (newMug) => {
     newMug.id = this.mugs[this.mugs.length - 1].id + 1;
@@ -19,13 +26,19 @@ class MugStore {
     for (const key in updateMug) mug[key] = updateMug[key];
   };
 
-  deleteCollection = (mugID) => {
-    this.mugs = this.mugs.filter((mug) => mug.id !== mugID);
+  deleteCollection = async (mugID) => {
+    try {
+      await axios.delete(`http://localhost:8000/mugs/${mugID}`);
+      this.mugs = this.mugs.filter((mug) => mug.id !== mugID);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 }
 
 decorate(MugStore, { mugs: observable });
 
 const mugStore = new MugStore();
+mugStore.fetchMugs();
 
 export default mugStore;
