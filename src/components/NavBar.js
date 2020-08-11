@@ -34,6 +34,13 @@ const NavBar = ({ toggleTheme, currentTheme }) => {
           >
             Mugs
           </NavItem>
+          <NavItem
+            className="nav-item "
+            to="/vendors"
+            style={{ margin: 10, float: "right" }}
+          >
+            Vendors
+          </NavItem>
           <ThemeButton className="nav-item" onClick={toggleTheme}>
             {currentTheme === "Warm"
               ? "Light"

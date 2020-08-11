@@ -6,8 +6,9 @@ import { UpdateButtonStyled } from "../../styles";
 //Store
 
 import MugModal from "../modals/MugModal";
+import VendorModal from "../modals/VendorModal";
 
-const UpdateButton = ({ mug }) => {
+const UpdateButton = ({ vendor, mug }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -15,7 +16,16 @@ const UpdateButton = ({ mug }) => {
   return (
     <>
       <UpdateButtonStyled onClick={openModal}>Update</UpdateButtonStyled>
-      <MugModal isOpen={isOpen} closeModal={closeModal} oldMug={mug} />
+
+      {vendor ? (
+        <VendorModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          oldVendor={vendor}
+        />
+      ) : (
+        <MugModal isOpen={isOpen} closeModal={closeModal} oldMug={mug} />
+      )}
     </>
   );
 };

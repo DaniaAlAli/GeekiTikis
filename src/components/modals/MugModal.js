@@ -18,9 +18,10 @@ const customStyles = {
   },
 };
 
-const MugModal = ({ isOpen, closeModal, oldMug }) => {
+const MugModal = ({ vendorId, isOpen, closeModal, oldMug }) => {
   const [mug, setMug] = useState(
     oldMug ?? {
+      vendorId,
       name: "",
       price: 0,
       description: "",
@@ -32,6 +33,9 @@ const MugModal = ({ isOpen, closeModal, oldMug }) => {
     const newMug = { ...mug, [event.target.name]: event.target.value };
     setMug(newMug);
   };
+
+  const handleImage = (event) =>
+    setMug({ ...mug, image: event.target.files[0] });
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -111,9 +115,9 @@ const MugModal = ({ isOpen, closeModal, oldMug }) => {
           <label color="red">Image</label>
           <input
             name="image"
-            onChange={handleChange}
+            type="file"
+            onChange={handleImage}
             className="form-control"
-            value={mug.image}
           />
         </div>
         <CreateButtonStyled className=" btn float-right">

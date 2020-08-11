@@ -8,7 +8,7 @@ export const BackButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  align-item: center;
+  align-items: center;
   justify-content: center;
   display: flex;
 `;
@@ -37,17 +37,20 @@ export const DeleteButtonStyled = styled.p`
 `;
 
 export const DetailName = styled.div`
-  align-item: center;
+  align-items: center;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
 `;
 
 export const DetailWrapper = styled.div`
-display: block;
-margin-left: auto;
-margin-right: auto;
-width 80;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80px;
+  img {
+    width: 500%;
+  }
 `;
 
 export const Footer = styled.p`
@@ -73,7 +76,7 @@ background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 export const ListWrapper = styled.div`
-  align-item: center;
+  align-items: center;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
@@ -120,7 +123,7 @@ export const MugWrapper = styled.div`
       color: ${(props) => props.theme.colorC};
       font-family: Caesar Dressing, cursive;
       font-size: xx-large;
-      align-item: center;
+      align-items: center;
       justify-content: center;
       display: flex;
       flex-wrap: wrap;
@@ -130,7 +133,7 @@ export const MugWrapper = styled.div`
       color: ${(props) => props.theme.colorC};
       font-family: "Special Elite", cursive;
       font-size: large;
-      align-item: center;
+      align-items: center;
       justify-content: center;
       display: flex;
       flex-wrap: wrap;
@@ -180,8 +183,8 @@ export const SearchBarStyled = styled.input`
 export const ThemeButton = styled.button`
   font-size: 15px;
   padding: 0.3em 1em;
-  border: 3px:
-  background: black;
+  border: 3px;
+  background-color: black;
   color: black;
 `;
 
@@ -206,14 +209,15 @@ export const Title = styled.h1`
 `;
 
 export const UpdateButtonStyled = styled.p`
-width: 40%;
-margin-left: auto;
-margin-right: auto;
-text-align: center;
-color: blue;
-:hover {
-  cursor: pointer;
-  border: 1px solid blue;
-  background-color: ${(props) => props.theme.colorDB};
-  border-radius: 20px;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: blue;
+  :hover {
+    cursor: pointer;
+    border: 1px solid blue;
+    background-color: ${(props) => props.theme.colorDB};
+    border-radius: 20px;
+  }
 `;

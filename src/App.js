@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Route, Switch } from "react-router";
+
+import { observer } from "mobx-react";
 
 //Components
-import MugList from "./components/MugList";
-import MugDetail from "./components/MugDetail";
-import Home from "./components/Home";
 import NavBar from "./components/NavBar";
-// import MugModal from "./components/modals/MugModal"
+import Routes from "./components/Routes";
 
 //Styles
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./styles";
+
+// Store
+import vendorStore from "./stores/vendorStore";
+import mugStore from "./stores/MugStore";
 
 const lightTheme = {
   Dark: {
@@ -78,20 +80,9 @@ function App() {
     <ThemeProvider theme={lightTheme[currentTheme]}>
       <GlobalStyle />
       <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
-
-      <Switch>
-        <Route path="/mugs/:mugSlug">
-          <MugDetail />
-        </Route>
-        <Route path="/mugs">
-          <MugList />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+      {vendorStore.loading || mugStore.loading ? <h1>Loading</h1> : <Routes />}
     </ThemeProvider>
   );
 }
 
-export default App;
+export default observer(App);
