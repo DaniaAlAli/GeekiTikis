@@ -1,0 +1,20 @@
+import React, { useState } from "react";
+
+//Styles
+import { AuthButtonStyled } from "../../styles";
+import SignupModal from "../modals/SignupModal";
+
+const SingupButton = () => {
+  const { isOpen, setIsOpen } = useState(false);
+
+  const closeModal = () => setIsOpen(false);
+  const openModal = () => setIsOpen(true);
+
+  return (
+    <>
+      <AuthButtonStyled onClick={openModal}>Sign up</AuthButtonStyled>
+      <SignupModal isOpen={isOpen} closeModal={closeModal} />
+    </>
+  );
+};
+export default SingupButton;
