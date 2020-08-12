@@ -7,7 +7,7 @@ import MugModal from "../modals/MugModal";
 import { FaPlusSquare } from "react-icons/fa";
 import VendorModal from "../modals/VendorModal";
 
-const AddButton = ({ vendorId }) => {
+const AddButton = ({ vendor }) => {
   const [isOpen, setIsOpen] = useState(false);
   const closeModal = () => setIsOpen(false);
   const openModal = () => setIsOpen(true);
@@ -20,8 +20,8 @@ const AddButton = ({ vendorId }) => {
         color="red"
         onClick={openModal}
       />
-      {vendorId ? (
-        <MugModal vendorId={vendorId} isOpen={isOpen} closeModal={closeModal} />
+      {vendor ? (
+        <MugModal vendor={vendor} isOpen={isOpen} closeModal={closeModal} />
       ) : (
         <VendorModal isOpen={isOpen} closeModal={closeModal} />
       )}

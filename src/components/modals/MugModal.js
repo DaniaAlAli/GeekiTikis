@@ -18,10 +18,9 @@ const customStyles = {
   },
 };
 
-const MugModal = ({ vendorId, isOpen, closeModal, oldMug }) => {
+const MugModal = ({ vendor, isOpen, closeModal, oldMug }) => {
   const [mug, setMug] = useState(
     oldMug ?? {
-      vendorId,
       name: "",
       price: 0,
       description: "",

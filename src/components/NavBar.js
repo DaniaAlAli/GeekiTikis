@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 //Photos
 import logo from "../photos/logo2.png";
@@ -8,6 +9,8 @@ import { ThemeButton, LogoLink, NavStyled, NavItem } from "../styles";
 
 //Components
 import SingupButton from "./Buttons/SignupButton";
+import SinginButton from "./Buttons/SigninButton";
+import authStore from "../stores/authStore";
 
 const NavBar = ({ toggleTheme, currentTheme }) => {
   return (
@@ -30,21 +33,33 @@ const NavBar = ({ toggleTheme, currentTheme }) => {
         </LogoLink>
 
         <ul className="navbar-nav ml-auto">
-          <NavItem
-            className="nav-item "
-            to="/mugs"
-            style={{ margin: 10, float: "right" }}
-          >
-            Mugs
-          </NavItem>
-          <NavItem
-            className="nav-item "
-            to="/vendors"
-            style={{ margin: 10, float: "right" }}
-          >
-            Vendors
-          </NavItem>
-          <SingupButton />
+          {authStore.user ? (
+            <p>Hello, {authStore.user.username}</p>
+          ) : (
+            <>
+              <SinginButton />
+              <SingupButton />
+            </>
+          )}
+          {authStore.user && authStore.user.role === "admin" && (
+            <>
+              <NavItem
+                className="nav-item "
+                to="/mugs"
+                style={{ margin: 10, float: "right" }}
+              >
+                Mugs
+              </NavItem>
+              <NavItem
+                className="nav-item "
+                to="/vendors"
+                style={{ margin: 10, float: "right" }}
+              >
+                Vendors
+              </NavItem>
+            </>
+          )}
+
           <ThemeButton className="nav-item" onClick={toggleTheme}>
             {currentTheme === "Warm"
               ? "Light"
@@ -63,4 +78,4 @@ const NavBar = ({ toggleTheme, currentTheme }) => {
   );
 };
 
-export default NavBar;
+export default observer(NavBar);

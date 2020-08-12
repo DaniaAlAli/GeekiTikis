@@ -13,8 +13,9 @@ import { DetailWrapper, DeleteButtonStyled } from "../styles";
 import vendorStore from "../stores/vendorStore";
 import MugList from "./MugList";
 import DeleteButton from "./Buttons/DeleteButton";
+import mugStore from "../stores/MugStore";
 
-const VendorDetail = ({ mugs }) => {
+const VendorDetail = () => {
   const { vendorSlug } = useParams();
 
   const vendor = vendorStore.vendors.find(
@@ -22,16 +23,29 @@ const VendorDetail = ({ mugs }) => {
   );
 
   if (!vendor) return <Redirect to="/vendors" />;
+
+  const mugs = vendor.mugs.map((mug) =>
+    mugStore.getMugById(mug.id).filter((mug) => mug)
+  );
+
   return (
     <>
-      <DetailWrapper>
-        <h4>{vendor.name}</h4>
-        <img src={vendor.image} alt={vendor.name} />
-        <UpdateButton vendor={vendor} />
-      </DetailWrapper>
-      <MugList mugs={vendor.mugs} />
-      <AddButton vendorId={vendor.id} />
-      <DeleteButton vendorId={vendor.id} />
+      <div className="row">
+        <div className="container">
+          <div className="col-12">
+            <DetailWrapper>
+              <h4>{vendor.name}</h4>
+              <img src={vendor.image} alt={vendor.name} />
+              <UpdateButton vendor={vendor} />
+              <DeleteButton vendorId={vendor.id} />
+            </DetailWrapper>
+          </div>
+          <div className="col-12">
+            <MugList mugs={mugs} />
+            <AddButton vendor={vendor} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

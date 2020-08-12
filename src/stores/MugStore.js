@@ -1,5 +1,5 @@
 import { decorate, observable } from "mobx";
-import axios from "axios";
+import instance from "./instance";
 
 class MugStore {
   mugs = [];
@@ -7,7 +7,7 @@ class MugStore {
 
   fetchMugs = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/mugs");
+      const res = await instance.get("http://localhost:8000/mugs");
       this.mugs = res.data;
       this.loading = false;
     } catch (error) {
@@ -15,15 +15,16 @@ class MugStore {
     }
   };
 
-  createMug = async (newMug) => {
+  getMugById = (mugId) => this.mugs.find((mug) => mug.id === mugId);
+
+  createMug = async (newMug, vendor) => {
     try {
       const formData = new FormData();
       for (const key in newMug) formData.append(key, newMug[key]);
-      const res = await axios.post(
-        `http://localhost:8000/vendors/${newMug.vendorId}}mugs`,
-        formData
-      );
-      this.mugs.push(res.data);
+      const res = await instance.post(`/vendors/${vendor.id}}mugs`, formData);
+      const mug = res.data;
+      this.mugs.push(mug);
+      vendor.mugs.push(mug);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -34,7 +35,7 @@ class MugStore {
       // update in the backend
       const formData = new FormData();
       for (const key in updateMug) formData.append(key, updateMug[key]);
-      await axios.put(`http://localhost:8000/mugs/${updateMug.id}`, formData);
+      await instance.put(`/mugs/${updateMug.id}`, formData);
 
       // update in the frontend
       const mug = this.mugs.find((mug) => mug.id === +updateMug.id);
@@ -46,7 +47,7 @@ class MugStore {
 
   deleteCollection = async (mugID) => {
     try {
-      await axios.delete(`http://localhost:8000/mugs/${mugID}`);
+      await instance.delete(`/mugs/${mugID}`);
       this.mugs = this.mugs.filter((mug) => mug.id !== mugID);
     } catch (error) {
       console.error("Error:", error);
