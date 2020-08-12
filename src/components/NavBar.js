@@ -6,6 +6,9 @@ import logo from "../photos/logo2.png";
 //Style
 import { ThemeButton, LogoLink, NavStyled, NavItem } from "../styles";
 
+//Components
+import SingupButton from "./Buttons/SignupButton";
+
 const NavBar = ({ toggleTheme, currentTheme }) => {
   return (
     <NavStyled className="navbar navbar-expand-lg">
@@ -41,6 +44,7 @@ const NavBar = ({ toggleTheme, currentTheme }) => {
           >
             Vendors
           </NavItem>
+          <SingupButton />
           <ThemeButton className="nav-item" onClick={toggleTheme}>
             {currentTheme === "Warm"
               ? "Light"
