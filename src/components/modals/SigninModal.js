@@ -18,14 +18,10 @@ const customStyles = {
   },
 };
 
-const SignupModal = ({ isOpen, closeModal }) => {
+const SigninModal = ({ isOpen, closeModal }) => {
   const [user, setUser] = useState({
     username: "",
-    email: "",
-    firstName: "",
-    lastName: "",
     password: "",
-    role: "vendor",
   });
 
   const handleChange = (event) => {
@@ -35,7 +31,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    authStore.signup(user);
+    authStore.signin(user);
     closeModal();
   };
 
@@ -60,36 +56,6 @@ const SignupModal = ({ isOpen, closeModal }) => {
           />
         </div>
         <div className="form-group ">
-          <label>First Name</label>
-          <input
-            name="firstName"
-            type="text"
-            onChange={handleChange}
-            className="form-control"
-            value={user.firstName}
-          />
-        </div>
-        <div className="form-group ">
-          <label>Last Name</label>
-          <input
-            name="lastName"
-            type="text"
-            onChange={handleChange}
-            className="form-control"
-            value={user.lastName}
-          />
-        </div>
-        <div className="form-group ">
-          <label>Email</label>
-          <input
-            name="email"
-            type="text"
-            onChange={handleChange}
-            className="form-control"
-            value={user.email}
-          />
-        </div>
-        <div className="form-group ">
           <label>Password</label>
           <input
             required
@@ -102,11 +68,11 @@ const SignupModal = ({ isOpen, closeModal }) => {
         </div>
 
         <CreateButtonStyled className=" btn float-right">
-          Signup
+          Sign in
         </CreateButtonStyled>
       </form>
     </Modal>
   );
 };
 
-export default SignupModal;
+export default SigninModal;
