@@ -53,6 +53,15 @@ export const DetailWrapper = styled.div`
   }
 `;
 
+export const AuthButtonStyled = styled.button`
+  font-size: 1em;
+  padding: 0.25em 1em;
+  margin-left: 0.5em;
+  border-radius: 3px;
+  background-color: red;
+  color: black;
+`;
+
 export const Footer = styled.p`
   text-align: center;
   font-family: "Hanalei", cursive;
@@ -184,7 +193,7 @@ export const ThemeButton = styled.button`
   font-size: 15px;
   padding: 0.3em 1em;
   border: 3px;
-  background-color: black;
+  background-color: grey;
   color: black;
 `;
 
