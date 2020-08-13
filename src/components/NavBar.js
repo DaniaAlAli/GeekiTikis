@@ -6,6 +6,7 @@ import logo from "../photos/logo2.png";
 
 //Style
 import { ThemeButton, LogoLink, NavStyled, NavItem } from "../styles";
+import { FiLogOut } from "react-icons/fi";
 
 //Components
 import SingupButton from "./Buttons/SignupButton";
@@ -34,7 +35,13 @@ const NavBar = ({ toggleTheme, currentTheme }) => {
 
         <ul className="navbar-nav ml-auto">
           {authStore.user ? (
-            <p>Hello, {authStore.user.username}</p>
+            <>
+              <p>Hello, {authStore.user.username}</p>
+              <FiLogOut
+                onClick={authStore.signout}
+                style={{ size: "2em", color: "red" }}
+              />
+            </>
           ) : (
             <>
               <SinginButton />
